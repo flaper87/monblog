@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for post in posts %}
+        <div class="post clearfix">
+            <div class="date">{{ post.uploadDate|datetime('%m/%d') }}</div>
+            <h3><a href="/post/{{post._id}}">{{ post.filename }}</a></h3>
+            <p class="list-tease">{{ post.metadata|safe }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
