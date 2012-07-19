@@ -1,4 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import conf
+from gridfs import GridFS
 from pymongo import Connection
 
 
@@ -7,14 +11,45 @@ class LazyDB(object):
     def __init__(self):
         self._db = None
 
-    def __getattribute__(self, name):
+    def _setup(self):
         if not object.__getattribute__(self, "_db"):
             self._db = getattr(Connection(**(conf.DB["CONN"])),
                                                 conf.DB["NAME"])
+    def __getitem__(self, name):
+        object.__getattribute__(self, "_setup")()
+        db = object.__getattribute__(self, "_db")
+        return db.__getitem__(name)
+
+    def __getattribute__(self, name):
+        object.__getattribute__(self, "_setup")()
         db = object.__getattribute__(self, "_db")
         return getattr(db, name)
 
 db = LazyDB()
+
+class LazyFS(object):
+
+    def __init__(self):
+        self._fs = None
+
+    def _setup(self):
+        if not object.__getattribute__(self, "_fs"):
+            # Forcing connection
+            db["test"]
+            self._fs = GridFS(db, collection="posts")
+
+    def __getitem__(self, name):
+        object.__getattribute__(self, "_setup")()
+        fs = object.__getattribute__(self, "_fs")
+        return fs.__getitem__(name)
+
+    def __getattribute__(self, name):
+        object.__getattribute__(self, "_setup")()
+        fs = object.__getattribute__(self, "_fs")
+        return getattr(fs, name)
+
+
+fs = LazyFS()
 
 def insert(collection, *args, **kwargs):
     coll = getattr(db, collection)

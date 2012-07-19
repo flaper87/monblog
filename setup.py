@@ -128,7 +128,7 @@ if py_version[0:2] == (2, 5):
 
 extra["entry_points"] = {
         "console_scripts" : [
-            "monblog = monblog.server:start"
+            "monblog=monblog.bin:monblog"
             ]
         }
 

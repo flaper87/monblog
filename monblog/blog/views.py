@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from bson.objectid import ObjectId
 from flask import request, render_template
@@ -26,4 +27,5 @@ def get_posts():
 
 @app.route('/post/<post_id>', methods=["GET"])
 def get_post(post_id):
-    return post_id
+    post = db.fs.get(ObjectId(post_id))
+    return render_template('%s/post.html' % conf.TEMPLATE_THEME, post=post)

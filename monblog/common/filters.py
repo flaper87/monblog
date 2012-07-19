@@ -12,3 +12,10 @@ def datetime_filter(date, fmt='%c'):
     return date.strftime(fmt)
 
 app.jinja_env.filters['datetime'] = datetime_filter
+
+def markdown(text):
+    # check whether the value is a datetime object
+    from markdown2 import markdown
+    return markdown(text.encode('utf-8')).decode('utf-8')
+
+app.jinja_env.filters['markdown'] = markdown
