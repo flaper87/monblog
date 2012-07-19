@@ -28,4 +28,4 @@ def get_posts():
 @app.route('/post/<post_id>', methods=["GET"])
 def get_post(post_id):
     post = db.fs.get(ObjectId(post_id))
-    return render_template('%s/post.html' % conf.TEMPLATE_THEME, post=post)
+    return render_template('%s/post.html' % conf.TEMPLATE_THEME, post=post, **post.metadata)

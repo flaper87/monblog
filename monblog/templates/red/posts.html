@@ -4,7 +4,14 @@
         <div class="post clearfix">
             <div class="date">{{ post.uploadDate|datetime('%m/%d') }}</div>
             <h3><a href="/post/{{post._id}}">{{ post.filename }}</a></h3>
-            <p class="list-tease">{{ post.metadata|safe }}</p>
+
+            {% if post['metadata'] %}
+                {% for k, v in post['metadata'].items() %}
+                    {% if k == 'author' %}
+                        <p class="list-tease">{{k}} - {{v}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}
