@@ -20,7 +20,7 @@ def get_posts():
     except ValueError:
         page = 0
 
-    posts = db.find("posts.files").sort([("_id", -1)]).skip(page * PAGE_SIZE).limit(PAGE_SIZE)
+    posts = db.find("posts.files").sort([("uploadDate", -1)]).skip(page * PAGE_SIZE).limit(PAGE_SIZE)
     return render_template('%s/posts.html' % conf.TEMPLATE_THEME, posts=posts)
    # return list(
 

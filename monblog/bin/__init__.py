@@ -30,6 +30,7 @@ def serve(parser):
 def upload(parser):
     import simplejson
     from monblog import db
+
     parser.add_argument("-f", "--file",
                         dest="file",
                         help="bind")
@@ -54,6 +55,9 @@ def upload(parser):
         new_post = db.fs.put(f, filename=filename, metadata=metadata)
         #db.fs.put(f)
 
+
+def export(parser):
+    pass
 
 def monblog():
 

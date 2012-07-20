@@ -1,11 +1,16 @@
 {% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
     <div class="post clearfix">
       <div class="date">{{ post.upload_date|datetime('%m/%d') }}</div>
       <h2><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h2>
 
         <div class="body">
-          {{ post.read()|markdown|safe }}
+          {% if md %}
+            {{ post.read()|markdown|safe }}
+          {% else %}
+            {{ post.read()|safe }}
+          {% endif %}
         </div>
 
         {%if tags %}

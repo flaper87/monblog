@@ -9,6 +9,7 @@ eggs
 parts
 bin
 var
+tmp
 sdist
 develop-eggs
 .installed.cfg
