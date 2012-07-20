@@ -2,8 +2,12 @@
 {% block content %}
     {% for post in posts %}
         <div class="post clearfix">
-            <div class="date">{{ post.uploadDate|datetime('%m/%d') }}</div>
-            <h3><a href="/post/{{post._id}}">{{ post.filename }}</a></h3>
+            <div class="date">{{ post.uploadDate|datetime('%b %d') }}</div>
+            {% if post['metadata']['title'] %}
+                <h3><a href="/post/{{post._id}}">{{ post['metadata']['title']}}</a></h3>
+            {% else %}
+                <h3><a href="/post/{{post._id}}">{{ post.filename }}</a></h3>
+            {% endif %}
 
             {% if post['metadata'] %}
                 {% for k, v in post['metadata'].items() %}

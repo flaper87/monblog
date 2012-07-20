@@ -11,8 +11,8 @@ DB = {
         }
 
 TEMPLATE_THEME = 'red'
-BLOG_SETTINGS = {'SITE_NAME': "FlaPer87",
-                 'DESCRIPTION': "Test",
+BLOG_SETTINGS = {'SITE_NAME': "Developer's Black Hole",
+                 'DESCRIPTION': "",
                  'AUTHOR': 'FlaPer87',
                  'KEYWORDS': 'as,sas',
                  'COPYRIGHT': 'CC'}
