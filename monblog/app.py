@@ -4,6 +4,7 @@
 from flask import Flask
 
 import conf
+import jinjatag
 from log import logger
 
 
@@ -13,6 +14,10 @@ class Application(Flask):
         super(Application, self).__init__(name or __name__, *args, **kwargs)
         self._apps = apps or []
         self.debug = conf.DEBUG
+        jinja_tag = jinjatag.JinjaTag()
+        self.jinja_options["extensions"].append(jinja_tag)
+        self.jinja_env
+        jinja_tag.init()
 
     def load_apps(self, apps=None):
         for app in apps or self._apps:
