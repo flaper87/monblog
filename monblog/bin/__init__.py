@@ -92,7 +92,7 @@ def export(parser):
             outputdir = options.dir
 
     for post in posts:
-        path = os.path.join(outputdir, str(post["_id"]))
+        path = os.path.join(outputdir, str(post["filename"]))
         data = ['$"metadata"$']
         data.append(json.dumps(post['metadata']))
         data.append('$"metadata"$')
