@@ -1,0 +1,16 @@
+<h4>About</h4>
+<p>{{ DESCRIPTION|safe }}</p>
+
+<h4>Recent Posts</h4>
+{% recent_posts %}
+<ul class="recent-posts">
+  <li><a href="/post/{id}" title="{title}">{title}</a></li>
+</ul>
+{% end_recent_posts %}
+
+<h4>Most Popular</h4>
+{% most_popular %}
+<ul class="recent-posts">
+  <li><a href="/post/{id}" title="{title}">{title}</a></li>
+</ul>
+{% end_most_popular %}

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{% block title %}{{ SITE_NAME }}{% endblock %}</title>
+
+    {% block meta %}
+    <meta name="keywords" content="{{ KEYWORDS }}">
+    <meta name="description" content="{{ DESCRIPTION }}">
+    <meta name="author" content="{{ AUTHOR }}">
+    {% endblock %}
+
+    <meta name="copyright" content="{{ COPYRIGHT }}" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/brackets.ico" type="image/x-icon"/>
+
+    {% block rss %}
+    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} main rss feed" href="/rss">
+    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} all entries feed" href="/feeds/all/">
+    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} all posts feed" href="/feeds/latest/">
+    {% if category %}<link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} - {{ category }} posts" href="/feeds/categories/{{ category.title|lower }}">{% endif %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/960.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/prettify.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/pygments.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/base.css" type="text/css" media="all" charset="utf-8">
+    <!-- between concepts -->
+    <link rel="stylesheet" href="{{ STATIC_URL }}/css/themes/basic.css" type="text/css" media="all" charset="utf-8">
+
+    <!--[if IE 6]>
+    <script src="{{ STATIC_URL }}js/DD_belatedPNG_0.0.7a-min.js"></script>
+    <script>
+      DD_belatedPNG.fix('#bleeder, .logo');
+    </script>
+    <style>
+      #bleeder{ display: none;}
+      #form-search{ width: auto; display: block; float: right; clear: both;}
+      .navbar-one{ float: right; clear: both;}
+    </style>
+    <![endif]-->
+
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}blog{% endblock %}">
+    <div id="bleeder"></div>
+
+    <div id="body-container" class="clearfix">
+    {% block body %}
+
+      <div id="header" class="clearfix">
+        <div id="logo">
+           <h1><a href="/" title="{{ SITE_NAME }}">{{ SITE_NAME }}</a></h1>
+        </div>
+        <!-- /logo -->
+      </div>
+      <!-- /header -->
+
+      <div class="container_16">
+
+        <div class="grid_9 suffix_1">
+          <div class="content">
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+
+        <div id="right-rail" class="grid_6">
+          {% block sidebar %}
+          {% include 'red/sections/sidebar.html' %}
+          {% endblock %}
+        </div>
+
+      </div>
+      <!-- /container_16 -->
+
+    {% endblock %}
+    </div>
+    <!-- /body-container -->
+
+    <div id="footer">
+    </div>
+    <!-- /footer -->
+
+    <!-- google analtyics -->
+    {% block extra_body %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      jQuery(function($) {
+        $.getScript('{{ STATIC_URL }}js/prettify.js', function(){
+          prettyPrint();
+        });
+      });
+    </script>
+    {% endblock %}
+  </body>
+</html>

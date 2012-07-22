@@ -13,15 +13,15 @@ from monblog.app import app
 
 def serve(parser):
     parser.add_argument("-b", "--bind",
-                      dest="bind",
-                      default="0.0.0.0",
-                      help="bind")
+                        dest="bind",
+                        default="0.0.0.0",
+                        help="bind")
 
     parser.add_argument("-p", "--port",
-                      type=int,
-                      default=5000,
-                      dest="port",
-                      help="port")
+                        type=int,
+                        default=5000,
+                        dest="port",
+                        help="port")
     options = parser.parse_known_args()[0]
 
     app.load_apps()
@@ -129,4 +129,3 @@ def monblog():
         return globals()[command](parser=argparse.ArgumentParser())
     except KeyError:
         pass
-

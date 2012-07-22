@@ -3,17 +3,14 @@ APPS = [
     "common",
 ]
 
-DB = {
-        'NAME': 'monblog',
-        'CONN': {
-                'host': 'localhost'
-            },
-        }
+DB = {'NAME': 'monblog',
+      'CONN': {'host': 'localhost'}}
 
 TEMPLATE_THEME = 'red'
+
 BLOG_SETTINGS = {'SITE_NAME': "Developer's Black Hole",
-                 'DESCRIPTION': "",
+                 'DESCRIPTION': "Once in a life time",
                  'AUTHOR': 'FlaPer87',
-                 'KEYWORDS': 'as,sas',
-                 'COPYRIGHT': 'CC'}
+                 'KEYWORDS': 'python, mongodb',
+                 'COPYRIGHT': 'Creative Commons'}
 DEBUG = True
