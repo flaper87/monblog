@@ -44,6 +44,8 @@ TODO
 
 * Write more docs
 
+* Convert to flaskext
+
 * Improve Metada Syntax
 
 * Add git / HG post "push" hooks in order to manage "publish" actions with a normal git repository.
