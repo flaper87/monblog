@@ -33,6 +33,7 @@ def upload(parser):
     from monblog import db
 
     parser.add_argument("-f", "--file",
+                        required=True,
                         dest="file",
                         help="file")
     options = parser.parse_known_args()[0]

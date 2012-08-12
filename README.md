@@ -1,7 +1,7 @@
 MonBlog
 ------
 
-GridFS based blog engine.
+Half-Static, distributed, GridFS based blog engine.
 
 Getting Started
 --------------
@@ -46,10 +46,17 @@ TODO
 
 * Convert to flaskext
 
+* Improve Base Theme
+
 * Improve Metada Syntax
 
 * Add git / HG post "push" hooks in order to manage "publish" actions with a normal git repository.
 
+
+Credits
+------
+
+Templates and statics were taken from [django-mingus](https://github.com/montylounge/django-mingus "django-mingus").
 
 LICENSE
 ------
