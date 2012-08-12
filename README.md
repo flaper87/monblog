@@ -1,10 +1,10 @@
 MonBlog
-=======
+------
 
 GridFS based blog engine.
 
 Getting Started
-===============
+--------------
 
 
 ### Posts
@@ -40,7 +40,7 @@ It is possible to export posts using the `export` command. (Posts will be export
 
 
 TODO
-====
+---
 
 * Write more docs
 
@@ -50,6 +50,6 @@ TODO
 
 
 LICENSE
-=======
+------
 
 This software is licensed under the New BSD License. See the LICENSE file in the top distribution directory for the full license text.
