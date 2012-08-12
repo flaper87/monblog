@@ -52,6 +52,8 @@ Installing monblog is as simple as (I suggest using develop instead of install, 
 TODO
 ---
 
+* Disqus.... ;)
+
 * Add more tests
 
 * Write more docs
