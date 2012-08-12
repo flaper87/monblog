@@ -43,6 +43,7 @@ It is possible to export posts using the `export` command. (Posts will be export
 
 Installing monblog is as simple as (I suggest using develop instead of install, so far it is not possible to have a separated conf file):
 
+	$ cd monblog/
     $ python setup.py install
     $ monblog serve
 
