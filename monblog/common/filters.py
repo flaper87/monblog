@@ -7,7 +7,7 @@ def datetime_filter(date, fmt='%c'):
     if not isinstance(date, (datetime.date, datetime.datetime)):
         try:
             date = datetime.datetime.strptime(str(date), '%Y-%m-%d').date()
-        except Exception, e:
+        except Exception:
             return date
     return date.strftime(fmt)
 

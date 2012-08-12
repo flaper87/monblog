@@ -34,7 +34,7 @@ def upload(parser):
 
     parser.add_argument("-f", "--file",
                         dest="file",
-                        help="bind")
+                        help="file")
     options = parser.parse_known_args()[0]
 
     with open(options.file, "r") as f:
@@ -53,7 +53,7 @@ def upload(parser):
             f.seek(0)
 
         filename = metadata.get("filename", os.path.basename(options.file))
-        new_post = db.fs.put(f, filename=filename, metadata=metadata)
+        db.fs.put(f, filename=filename, metadata=metadata)
         #db.fs.put(f)
 
 
@@ -102,6 +102,8 @@ def export(parser):
             f.write("\n".join(data))
 
 
+# Base Command.
+# Do Not call it directly, call the above ones instead.
 def monblog():
 
     if len(sys.argv) < 2:
