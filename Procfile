@@ -1,1 +1,1 @@
-web: monblog
+web: monblog serve
