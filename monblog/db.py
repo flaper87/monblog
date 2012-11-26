@@ -14,10 +14,17 @@ class LazyDB(object):
     def _setup(self):
         if not object.__getattribute__(self, "_db"):
             self._db = getattr(Connection(**(conf.DB["CONN"])),
-                                                conf.DB["NAME"])
+                                                   conf.DB["NAME"])
+
+            if conf.DB.get("USERNAME") and conf.DB.get("PASSWORD"):
+                global db
+                db.authenticate(conf.DB.get("USERNAME"),
+                                conf.DB.get("PASSWORD"))
+
     def __getitem__(self, name):
         object.__getattribute__(self, "_setup")()
         db = object.__getattribute__(self, "_db")
+
         return db.__getitem__(name)
 
     def __getattribute__(self, name):
@@ -26,6 +33,7 @@ class LazyDB(object):
         return getattr(db, name)
 
 db = LazyDB()
+
 
 class LazyFS(object):
 
