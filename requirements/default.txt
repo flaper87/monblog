@@ -5,7 +5,7 @@ Werkzeug==0.8.3
 distribute==0.6.19
 ipython==0.13
 markdown2==2.0.1
-pymongo==2.2.1
+pymongo==2.3
 simplejson==2.6.0
 wsgiref==0.1.2
 jinjatag==0.1.6
