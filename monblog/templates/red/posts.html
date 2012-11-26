@@ -4,9 +4,9 @@
         <div class="post clearfix">
             <div class="date">{{ post.uploadDate|datetime('%b %d') }}</div>
             {% if post['metadata']['title'] %}
-                <h3><a href="/post/{{post._id}}">{{ post['metadata']['title']}}</a></h3>
+                <h3><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post['metadata']['title']}}</a></h3>
             {% else %}
-                <h3><a href="/post/{{post._id}}">{{ post.filename }}</a></h3>
+                <h3><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post.filename }}</a></h3>
             {% endif %}
 
             {% if post['metadata'] %}

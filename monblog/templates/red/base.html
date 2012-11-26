@@ -14,10 +14,17 @@
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/brackets.ico" type="image/x-icon"/>
 
     {% block rss %}
-    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} main rss feed" href="/rss">
-    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} all entries feed" href="/feeds/all/">
-    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} all posts feed" href="/feeds/latest/">
-    {% if category %}<link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} - {{ category }} posts" href="/feeds/categories/{{ category.title|lower }}">{% endif %}
+    {% if query and query["metadata.tags"] %}
+      <link href="{{ url_for('recent_feeds_by_tag', tag=query["metadata.tags"]) }}"
+        rel="alternate"
+        title="{{ SITE_NAME }} Recent Changes" 
+        type="application/atom+xml">
+    {% else %}
+      <link href="{{ url_for('recent_feeds') }}"
+        rel="alternate"
+        title="{{ SITE_NAME }} Recent Changes" 
+        type="application/atom+xml">
+    {% endif %}
     {% endblock %}
 
     <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/960.css" type="text/css" media="all" charset="utf-8">
@@ -25,7 +32,7 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/pygments.css" type="text/css" media="all" charset="utf-8">
     <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/base.css" type="text/css" media="all" charset="utf-8">
     <!-- between concepts -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}/css/themes/basic.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/themes/basic.css" type="text/css" media="all" charset="utf-8">
 
     <!--[if IE 6]>
     <script src="{{ STATIC_URL }}js/DD_belatedPNG_0.0.7a-min.js"></script>
@@ -48,9 +55,17 @@
     {% block body %}
 
       <div id="header" class="clearfix">
-        <div id="logo">
+        <div style="float: left" id="logo">
            <h1><a href="/" title="{{ SITE_NAME }}">{{ SITE_NAME }}</a></h1>
+
         </div>
+           {% if query and query["metadata.tags"] %}
+          
+            <a style="float: right;" href="{{ url_for('recent_feeds_by_tag', tag=query["metadata.tags"]) }}">
+          {% else %}
+            <a style="float: right;" href="{{ url_for('recent_feeds') }}">
+          {% endif %}
+          <img width="50" height="50" src="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/img/rss-icon.png"></a>
         <!-- /logo -->
       </div>
       <!-- /header -->
