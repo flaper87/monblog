@@ -33,9 +33,10 @@ class Application(Flask):
 
 app = Application(apps=conf.APPS)
 
+
 @app.context_processor
 def template_context():
-    data =  {
+    data = {
         "STATIC_URL": app.static_url_path,
         "TEMPLATE_THEME": conf.TEMPLATE_THEME,
     }
