@@ -17,6 +17,6 @@ if sys.version_info < (2, 5):  # pragma: no cover
     if sys.version_info >= (2, 4):
         raise Exception(
                 'Python 2.4 is not supported by this version. '
-                'Please use Infinidraw versions 1.x.')
+                'Please use Monblog versions 1.x.')
     else:
-        raise Exception('Infinidraw requires Python versions 2.5 or later.')
+        raise Exception('Monblog requires Python versions 2.5 or later.')
