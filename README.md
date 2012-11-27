@@ -23,14 +23,13 @@ Posts are plain text files that can be written down using markdown (Hopefully it
 
 Posts have to be "uploaded" to the blog engine using the `upload` command.
 
-	$ monblog upload -i my_new_blog_post
+	monblog upload -f my_new_blog_post
 
-	$ monblog upload -i dir_with_posts
 
 It is possible to upload posts to a remote server using the `dbhost` param.
 
 
-	monblog upload --dbhost blog.monblog.com -i my_new_blog_post
+	monblog upload --dbhost blog.monblog.com -f my_new_blog_post
 
 
 ### Export
@@ -53,8 +52,6 @@ Installing monblog is as simple as (I suggest using develop instead of install, 
 TODO
 ---
 
-* Disqus.... ;)
-
 * Add more tests
 
 * Write more docs
@@ -62,8 +59,6 @@ TODO
 * Convert to flaskext
 
 * Improve Base Theme
-
-* Improve Metada Syntax
 
 * Add git / HG post "push" hooks in order to manage "publish" actions with a normal git repository.
 
