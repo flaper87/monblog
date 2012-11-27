@@ -2,7 +2,7 @@
 {% block content %}
     {% for post in posts %}
         <div class="post clearfix">
-            <div class="date">{{ post.uploadDate|datetime('%b %d') }}</div>
+            <div class="date">{{ post.uploadDate|datetime('%b %d %Y') }}</div>
             {% if post['metadata']['title'] %}
                 <h3><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post['metadata']['title']}}</a></h3>
             {% else %}
