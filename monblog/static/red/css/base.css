@@ -42,6 +42,17 @@ body {
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+blockquote {
+  font: 14px/22px normal helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-bottom: 20px;
+  border-left: 3px solid #ccc;
+}
+
 /* LAYOUT */
 #body-container{ padding-top: 22px; }
 
@@ -213,11 +224,11 @@ ul ul { margin-bottom: 0; }
 
 h1{ font-size: 2.0em; }
 
-h2, h3, h4, h5 { margin: 1em 0 0.2em; font-weight: bold; }
+h2, h3, h4, h5 { margin: 1em 0 1em; font-weight: bold; }
 
 h2 { margin: 0.25em 0 .2em; font-size: 1.8em; letter-spacing: -0.025em; line-height: 1.2em; font-weight: 400; }
 
-h3 { font-size: 1em; margin-bottom: 0.25em; }
+h3 { font-size: 1.4em; margin-bottom: 0.25em; }
 
 h4 { font-size: 0.875em; }
 

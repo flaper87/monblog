@@ -17,12 +17,12 @@
     {% if query and query["metadata.tags"] %}
       <link href="{{ url_for('recent_feeds_by_tag', tag=query["metadata.tags"]) }}"
         rel="alternate"
-        title="{{ SITE_NAME }} Recent Changes" 
+        title="{{ SITE_NAME }} Recent Changes"
         type="application/atom+xml">
     {% else %}
       <link href="{{ url_for('recent_feeds') }}"
         rel="alternate"
-        title="{{ SITE_NAME }} Recent Changes" 
+        title="{{ SITE_NAME }} Recent Changes"
         type="application/atom+xml">
     {% endif %}
     {% endblock %}
@@ -60,7 +60,7 @@
 
         </div>
            {% if query and query["metadata.tags"] %}
-          
+
             <a style="float: right;" href="{{ url_for('recent_feeds_by_tag', tag=query["metadata.tags"]) }}">
           {% else %}
             <a style="float: right;" href="{{ url_for('recent_feeds') }}">
@@ -100,7 +100,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
       jQuery(function($) {
-        $.getScript('{{ STATIC_URL }}js/prettify.js', function(){
+        $.getScript('{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/js/prettify.js', function(){
           prettyPrint();
         });
       });
