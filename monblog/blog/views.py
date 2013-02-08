@@ -8,6 +8,7 @@ from flask import request, render_template, url_for, redirect
 # Monblog
 from ..app import app
 from .. import db, conf
+from ..common.filters import markdown
 
 PAGE_SIZE = 50
 
@@ -51,7 +52,7 @@ def _feeds(query=None, title='Recent Articles'):
             url_for("get_post", post_id=str(post["_id"])))
         text = force_bytes(db.fs.get(ObjectId(post["_id"])).read(),
                                         "ascii", errors="ignore")
-        feed.add(post["metadata"].get("title"), text,
+        feed.add(post["metadata"].get("title"), markdown(text),
                  id=url, content_type='html', url=url,
                  updated=post["uploadDate"],
                  published=post["uploadDate"],
