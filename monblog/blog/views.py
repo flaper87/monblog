@@ -13,6 +13,12 @@ from ..common.filters import markdown
 PAGE_SIZE = 50
 
 
+@app.route('/', methods=["GET"])
+def index():
+    posts = db.find("posts.files", {}).sort([("uploadDate", -1)]).limit(3)
+    return render_template('%s/base.html' % conf.TEMPLATE_THEME, posts=posts)
+
+
 def _posts(query=None):
     try:
         page = int(request.values.get("page", 0))
@@ -26,7 +32,7 @@ def _posts(query=None):
                             posts=posts, query=query)
 
 
-@app.route('/', methods=["GET"])
+@app.route('/posts', methods=["GET"])
 def get_posts():
     return _posts()
 

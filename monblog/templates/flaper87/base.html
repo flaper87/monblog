@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Developer's black hole</title>
+	<meta name="author" content="Flavio Percoco <flaper87@flaper87.org>">
+	<meta name="description" content="FlaPer87's personal blog">
+
+	<script type="text/javascript" src="//use.typekit.net/oyl7xeq.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" href="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--[if lt IE 9]><script src="dist/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="{% block bodyclass %}is-home{% endblock %}">
+{% block content_header %}
+	<header id="header">
+		<a href="/"><h1 id="logo">Developer's black hole</h1></a>
+		<p id="description">Hi. I’m Flavio Percoco, and I’m a Software Engineer at Red Hat, where I spend my days working on OpenStack. In my spare time I speak at conferences, play with MongoDB, smoke my coffee and drink my pipe.</p>
+
+		<nav id="contacts">
+			<ul>
+				<li class="twitter"><a href="https://twitter.com/flaper87">@flaper87</a></li>
+				<li class="github"> <a href="https://github.com/flaper87">GitHub</a></li>
+				<li class="flickr"> <a href="https://flickr.com/photos/flaper87">Flickr</a></li>
+				<li class="deck"> <a href="https://speakerdeck.com/flaper87">Speaker Deck</a></li>
+			</ul>
+		</nav>
+	</header>
+{% endblock %}
+
+{% block content %}
+	<section id="archive-summary" class="archive">
+		<nav class="posts">
+			<ul>
+            {% for post in posts %}
+                {% if post['metadata']['title'] %}
+                    <li><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post['metadata']['title']}}</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post.filename }}</a></li>
+                {% endif %}
+            {% endfor %}        
+			    <li class="more"><a href="/posts">Full archive</a></li>
+			</ul>
+		</nav>
+	</section>
+{% endblock %}
+
+
+	<script src="{{ STATIC_URL }}/{{ TEMPLATE_THEME }}/js/app.js"></script>
+	<script>require('scripts/logo')</script>
+
+    <br/><footer id="footer"> © 2013 Flavio Percoco - Theme by <a href="http://www.zenoamaro.com/">Zeno Amaro</a></footer>
+</body>
+</html>

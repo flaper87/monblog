@@ -22,13 +22,17 @@
         </div>
 
         {%if tags %}
+          <br/><div><strong>Tags:</strong></div>
           {% for tag in tags %}
-            <p class="list-tease">{{tag}}</p>
+            <p class="list-tease"><a href="/tag/{{tag}}">{{tag}}</a></p>
           {% endfor %}
         {% endif %}
 
         <iframe src="http://www.facebook.com/plugins/like.php?href={{ url_for("get_post", post_id=post._id) }}&layout=button_count&show_faces=true&width=450&action=like&font=arial&colorscheme=light&height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
     </div>
+
+    <p>
+      <strong>Flavio Percoco</strong> (<a href="https://twitter.com/flaper87">@flaper87</a>) is a Software Engineer at <a href="http://www.redhat.com/">Red Hat</a> where he spends his days working on <a href="http://www.openstack.org/">OpenStack</a>. In his spare time he speaks at conferences, plays with <a href="http://mongodb.org">MongoDB</a>, smokes his coffee and drinks his pipe.</p>
     {% if post['metadata'].get("comments_allowed", True) %}
       <div id="comments">
         <div id="disqus_thread"></div>
@@ -49,5 +53,5 @@
     {% else %}
       <div id="comments"><h4>Sorry, comments are disabled for this post.</h4></div>
     {% endif %}
-        
+
 {% endblock %}

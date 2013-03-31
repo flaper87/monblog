@@ -1,0 +1,29 @@
+{% extends "flaper87/base.html" %}
+{% block bodyclass %}is-archive{% endblock %}
+{% block content_header %}
+	<header id="header">
+		<div id="logo">
+			<a href="/">Developer's black hole</a>
+		</div>
+	</header>
+{% endblock %}
+
+{% block content %}
+	<section id="archive" class="archive">
+		<header>
+			<h1>Archive</h1>
+		</header>
+
+		<nav class="posts">
+            <h2 class="date">Latests</h2>
+			<ul>
+            {% for post in posts %}
+                {% if post['metadata']['title'] %}
+                    <li><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post['metadata']['title']}}</a></li>
+                {% else %}
+                    <li><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post.filename }}</a></li>
+                {% endif %}
+            {% endfor %}        
+		</nav>
+	</section>
+{% endblock %}

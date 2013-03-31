@@ -1,0 +1,40 @@
+{% extends "flaper87/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block bodyclass %}is-post{% endblock %}
+{% block content_header %}
+	<header id="header">
+		<a href="/"><div id="logo">
+			Developer's black hole
+		</div></a>
+	</header>
+
+	<article id="post" class="post">
+		<header>
+			<a href="/post.html"><h1>How Monblog uses Mongodb</h1></a>
+		</header>
+
+		<div class="body">
+          {% if md %}
+            {{ post.read()|markdown|safe }}
+          {% else %}
+            {{ post.read()|safe }}
+          {% endif %}
+        </div>
+	</section>
+{% endblock %}
+
+{% block content %}
+	<section id="related-posts" class="related archive">
+		<nav class="posts">
+            {%if tags %}
+			    <h2>Tags</h2>
+			    <ul>
+                  {% for tag in tags %}
+                    <li><a href="/tag/{{tag}}">{{tag}}</a></li>
+                  {% endfor %}
+			    </ul>
+            {% endif %}
+		</nav>
+	</section>
+{% endblock %}
