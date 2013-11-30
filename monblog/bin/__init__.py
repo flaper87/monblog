@@ -43,20 +43,30 @@ def upload(parser):
 
     def import_post(input_file):
         logger.info("Importing %s" % input_file)
+
         with open(input_file, "r") as f:
             metadata = {}
             line = f.readline()
-            if line.startswith('$"metadata"$'):
-                _metadata = ""
-                while True:
-                    line = f.readline()
-                    if line.startswith('$"metadata"$'):
-                        if _metadata:
-                            metadata = json.loads(_metadata)
-                        break
-                    _metadata += line.strip()
-            else:
-                f.seek(0)
+
+            # NOTE(flaper87): Monblog header
+            # is commented.
+            if line.startswith('<!---'):
+                line = f.readline()
+
+                if line.startswith('$"metadata"$'):
+                    _metadata = ""
+                    while True:
+                        line = f.readline()
+                        if line.startswith('$"metadata"$'):
+                            if _metadata:
+                                metadata = json.loads(_metadata)
+                            break
+                        _metadata += line.strip()
+
+            # NOTE(flaper87): Since headers are
+            # commented, we can store the whole
+            # file in GridFS.
+            f.seek(0)
 
             try:
                 filename = metadata.get("filename", os.path.basename(input_file))
