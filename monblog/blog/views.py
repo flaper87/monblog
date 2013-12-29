@@ -19,6 +19,11 @@ def index():
     return render_template('%s/base.html' % conf.TEMPLATE_THEME, posts=posts)
 
 
+@app.route('/about', methods=["GET"])
+def about():
+    return render_template('%s/about.html' % conf.TEMPLATE_THEME)
+
+
 def _posts(query=None):
     try:
         page = int(request.values.get("page", 0))
@@ -29,7 +34,7 @@ def _posts(query=None):
         sort([("uploadDate", -1)]).\
         skip(page * PAGE_SIZE).limit(PAGE_SIZE)
     return render_template('%s/posts.html' % conf.TEMPLATE_THEME,
-                            posts=posts, query=query)
+                           posts=posts, query=query)
 
 
 @app.route('/posts', methods=["GET"])
