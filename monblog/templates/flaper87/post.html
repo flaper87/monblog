@@ -12,9 +12,9 @@
 	<article id="post" class="post">
 		<header>
           {% if post['metadata']['title'] %}
-              <a href="/post/{{post._id}}">{{ post['metadata']['title']}}</a>
+              <a href="/post/{{post.metadata.slug}}">{{ post['metadata']['title']}}</a>
           {% else %}
-              <a href="/post/{{post._id}}">{{ post.filename }}</a>
+              <a href="/post/{{post.metadata.slug}}">{{ post.filename }}</a>
           {% endif %}
 		</header>
 

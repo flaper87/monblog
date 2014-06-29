@@ -19,9 +19,9 @@
 			<ul>
             {% for post in posts %}
                 {% if post['metadata']['title'] %}
-                    <li><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post['metadata']['title']}}</a></li>
+                    <li><a href="{{ url_for("get_post", post_id=post.metadata.slug) }}">{{ post['metadata']['title']}}</a></li>
                 {% else %}
-                    <li><a href="{{ url_for("get_post", post_id=post._id) }}">{{ post.filename }}</a></li>
+                    <li><a href="{{ url_for("get_post", post_id=post.metadata.slug) }}">{{ post.filename }}</a></li>
                 {% endif %}
             {% endfor %}        
 		</nav>

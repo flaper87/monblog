@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from bson import objectid
+from gridfs.errors import NoFile
 from urlparse import urljoin
-from bson.objectid import ObjectId
 from werkzeug.contrib.atom import AtomFeed
-from flask import request, render_template, url_for, redirect
+from flask import request, render_template, url_for, redirect, abort
 
 # Monblog
 from ..app import app
@@ -61,8 +62,8 @@ def _feeds(query=None, title='Recent Articles'):
         author = conf.BLOG_SETTINGS.get("AUTHOR", "")
         url = urljoin(request.url_root,
             url_for("get_post", post_id=str(post["_id"])))
-        text = force_bytes(db.fs.get(ObjectId(post["_id"])).read(),
-                                        "ascii", errors="ignore")
+        text = force_bytes(db.fs.get(objectid.ObjectId(post["_id"])).read(),
+                           "ascii", errors="ignore")
         feed.add(post["metadata"].get("title"), markdown(text),
                  id=url, content_type='html', url=url,
                  updated=post["uploadDate"],
@@ -74,10 +75,18 @@ def _feeds(query=None, title='Recent Articles'):
 
 @app.route('/post/<post_id>/', methods=["GET"])
 def get_post(post_id):
-    post = db.fs.get(ObjectId(post_id))
+    try:
+        post = db.fs.get(objectid.ObjectId(post_id))
+    except objectid.InvalidId:
+        try:
+            post = db.fs.get_last_version(**{'metadata.slug': post_id})
+        except NoFile:
+            abort(404)
+
     db.update("posts.files",
-              {"_id": ObjectId(post_id)},
+              {"_id": post._id},
               {"$inc": {"metadata.reads": 1}})
+
     return render_template('%s/post.html' % conf.TEMPLATE_THEME,
                            post=post, **post.metadata)
 
