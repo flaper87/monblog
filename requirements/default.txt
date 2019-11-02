@@ -1,5 +1,5 @@
 gunicorn==0.16.1
-Flask==0.9
+Flask==1.0
 Jinja2==2.6
 Markdown==2.2.0
 Werkzeug==0.8.3

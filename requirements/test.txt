@@ -3,7 +3,7 @@ nose-cover3
 unittest2>=0.5.0
 coverage>=3.0
 mock
-Flask==0.9
+Flask==1.0
 Jinja2==2.6
 Werkzeug==0.8.3
 distribute==0.6.19
